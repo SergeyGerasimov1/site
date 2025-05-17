@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Редактирование отчёта</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<h1>Редактирование отчёта</h1>
+
+<form id="editForm">
+    <label>Дата: <input type="date" id="date" required /></label><br />
+    <label>Работа: <input type="text" id="job" required /></label><br />
+    <label>Объём (м/шт): <input type="number" id="amount" required /></label><br />
+    <label>Коэффициент: <input type="number" step="0.1" id="coef" required /></label><br />
+    <label>Коэф. выходного дня: <input type="number" step="0.1" id="weekendCoef" required /></label><br />
+    <button type="submit">Сохранить</button>
+    <a href="profile.html">Назад</a>
+</form>
+
+<script src="edit.js"></script>
+</body>
+</html>

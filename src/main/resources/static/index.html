@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>ЭлектроУчёт — Отчет</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav>
+    <a href="index.html" class="active">Отчет</a>
+    <a href="profile.html">Мой профиль</a>
+</nav>
+<div class="container">
+    <h1>Форма отчета электрика</h1>
+    <form id="reportForm">
+        <div>
+            <label for="executor">Исполнитель</label>
+            <input type="text" id="executor" name="executor" required> //TODO
+        </div>
+
+        <div>
+            <label for="date">Дата</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+
+        <div>
+            <label for="object">Объект</label>
+            <input type="text" id="object" name="object"> // TODO
+        </div>
+
+        <div>
+            <label for="location">Локация</label>
+            <input type="text" id="location" name="location">
+        </div>
+
+        <div>
+            <label for="section">Раздел</label>
+            <input type="text" id="section" name="section"> // TODO
+        </div>
+
+        <div>
+            <label for="job">Работа</label>
+            <input type="text" id="job" name="job"> //TODO
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="dismantling" name="dismantling">
+            <label for="dismantling">Демонтаж</label>// ????
+        </div>
+
+        <div>
+            <label for="material">Материал</label>
+            <input type="text" id="material" name="material"> //TODO
+        </div>
+
+        <div>
+            <label for="amount">Объём (м/шт)</label>
+            <input type="number" step="1" id="amount" name="amount">
+        </div>
+
+        <div>
+            <label for="coef">Коэффициент</label>
+            <input type="number" step="0.1" id="coef" name="coef">
+        </div>
+
+        <div>
+            <label for="weekendCoef">Коэфф. выходного дня</label>
+            <input type="number" step="0.1" id="weekendCoef" name="weekendCoef">
+        </div>
+
+        <div>
+            <label for="note">Примечание</label>
+            <textarea id="note" name="note" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="button">Отправить отчет</button>
+    </form>
+</div>
+
+<script src="submit.js"></script>
+</body>
+</html>
