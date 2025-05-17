@@ -1,6 +1,8 @@
 package com.example.accounting.controller;
 
 import com.example.accounting.model.WorkReport;
+import com.example.accounting.service.ReportService;
+import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/reports")
 @CrossOrigin(origins = "*")
+@AllArgsConstructor
 public class ReportController {
 
-    @Autowired
+    private ReportService reportService;
     private WorkReportRepository repo;
 
     @PostMapping
@@ -32,11 +35,7 @@ public class ReportController {
             @RequestParam(required = false) LocalDate from,
             @RequestParam(required = false) LocalDate to
     )  {
-
-        if (from != null && to != null) {
-            return repo.findByExecutorAndDateBetween(executor, from, to);
-        }
-        return repo.findByExecutor(executor);
+        return reportService.getByExecutorAndDate(executor, from, to);
     }
 
     @GetMapping("/{id}")
