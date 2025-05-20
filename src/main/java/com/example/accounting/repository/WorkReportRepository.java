@@ -1,4 +1,4 @@
-package com.example.accounting.repo;
+package com.example.accounting.repository;
 
 import com.example.accounting.model.WorkReport;
 import org.springframework.data.jpa.repository.JpaRepository;
