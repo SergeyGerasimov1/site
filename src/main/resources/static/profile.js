@@ -15,20 +15,46 @@ async function loadReports() {
     const tbody = document.querySelector('#reportsTable tbody');
     tbody.innerHTML = '';
 
+    const grouped = {};
     reports.forEach(r => {
-      const salary = r.amount * r.coef * r.weekendCoef; //TODO
-      total += salary;
+      const date = r.date;
+      if (!grouped[date]) grouped[date] = [];
+      grouped[date].push(r);
+    });
 
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${r.date}</td>
-        <td><a href="edit.html?id=${r.id}">${r.job}</a></td>
-        <td>${salary.toFixed(2)} ₽</td>
-        <td>
-          <button onclick="deleteReport(${r.id})">Удалить</button>
-        </td>
+    tbody.innerHTML = '';
+    total = 0;
+
+    Object.entries(grouped).forEach(([date, dailyReports]) => {
+      let dayTotal = 0;
+
+      dailyReports.forEach(r => {
+        const salary = r.amount * r.coef * r.weekendCoef;
+        dayTotal += salary;
+        total += salary;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${r.date}</td>
+          <td><a href="edit.html?id=${r.id}">${r.job}</a></td>
+          <td>${salary.toFixed(2)} ₽</td>
+          <td>
+            <button onclick="deleteReport(${r.id})">Удалить</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      // Строка "Итого за день"
+      const summaryRow = document.createElement('tr');
+      summaryRow.style.fontWeight = 'bold';
+      summaryRow.style.backgroundColor = '#f8f8f8';
+      summaryRow.innerHTML = `
+        <td colspan="2">Итого за ${date}:</td>
+        <td>${dayTotal.toFixed(2)} ₽</td>
+        <td></td>
       `;
-      tbody.appendChild(row);
+      tbody.appendChild(summaryRow);
     });
 
     document.getElementById('executorName').textContent = executorName;
