@@ -4,7 +4,7 @@ async function loadReports() {
   const from = document.getElementById('dateFrom').value;
   const to = document.getElementById('dateTo').value;
 
-  const url = `/api/reports/user/${executorName}` + 
+  const url = `/api/reports/user/${executorName}` +
     (from && to ? `?from=${from}&to=${to}` : '');
 
   try {

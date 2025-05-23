@@ -1,47 +1,48 @@
 package com.example.accounting.controller;
 
+import com.example.accounting.controller.dto.WorkReportDTO;
+import com.example.accounting.controller.mapper.WorkReportMapper;
 import com.example.accounting.model.WorkReport;
 import com.example.accounting.service.ReportService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
-import com.example.accounting.repository.WorkReportRepository;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/reports")
-@CrossOrigin(origins = "*")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ReportController {
 
-    private ReportService reportService;
-    private final WorkReportRepository repo;
+    private final ReportService reportService;
+
+    private final WorkReportMapper mapper;
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody WorkReport report) {
+    public void save(@RequestBody WorkReportDTO reportDTO) {
+        WorkReport report = mapper.mapToEntity(reportDTO);
         reportService.save(report);
-        return new ResponseEntity<>("Сохранено", HttpStatus.OK);
     }
-    @GetMapping("/user/{executor}")
-    public List<WorkReport> getByExecutorAndDate(
+
+    @GetMapping("/user/{executor}") //TODO
+    public List<WorkReportDTO> getByExecutorAndDate(
             @PathVariable String executor,
             @RequestParam(required = false) LocalDate from,
             @RequestParam(required = false) LocalDate to
-    )  {
-        return reportService.getByExecutorAndDate(executor, from, to);
+    ) {
+        return mapper.mapListToDTO(reportService.getByExecutorAndDate(executor, from, to));
     }
+
     @GetMapping("/{id}")
-    public Optional<WorkReport> getById(@PathVariable Long id) {
-        return reportService.getById(id);
+    public WorkReportDTO getById(@PathVariable Long id) {
+        return mapper.mapToDto(reportService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateReport(@PathVariable Long id, @RequestBody WorkReport updated) {
-        return reportService.updateReport(id,updated);
+    public void updateReport(@RequestBody WorkReportDTO updated) {
+        WorkReport workReport = mapper.mapToEntity(updated);
+        reportService.updateReport(workReport);
     }
 
     @DeleteMapping("/{id}")

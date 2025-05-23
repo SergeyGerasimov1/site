@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Редактирование отчёта</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 <h1>Редактирование отчёта</h1>
 
 <form id="editForm">
-    <label>Дата: <input type="date" id="date" required /></label><br />
-    <label>Работа: <input type="text" id="job" required /></label><br />
-    <label>Объём (м/шт): <input type="number" id="amount" required /></label><br />
-    <label>Коэффициент: <input type="number" step="0.1" id="coef" required /></label><br />
-    <label>Коэф. выходного дня: <input type="number" step="0.1" id="weekendCoef" required /></label><br />
+    <label>Исполнитель: <input type="text" id="executor" required/></label><br/>
+    <label>Дата: <input type="date" id="date" required/></label><br/>
+    <label>Объект: <input type="text" id="object" required/></label><br/>
+    <label>Локация: <input type="text" id="location"/></label><br/>
+    <label>Раздел: <input type="text" id="section" required/></label><br/>
+    <label>Работа: <input type="text" id="job" required/></label><br/>
+    <label>Демонтаж: <input type="checkbox" id="dismantling"></label><br/>
+    <label>Материал: <input type="text" id="material" required/></label><br/>
+    <label>Объём (м/шт): <input type="number" id="amount" required/></label><br/>
+    <label>Коэффициент: <input type="number" step="0.1" id="coef"/></label><br/>
+    <label>Коэф. выходного дня: <input type="number" step="0.1" id="weekendCoef"/></label><br/>
+    <label>Примечание: <input type="text" id="note"/></label><br/>
     <button type="submit">Сохранить</button>
     <a href="profile.html">Назад</a>
 </form>

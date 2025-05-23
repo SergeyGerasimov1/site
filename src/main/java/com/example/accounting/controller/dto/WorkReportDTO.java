@@ -1,18 +1,12 @@
-package com.example.accounting.model;
+package com.example.accounting.controller.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.time.LocalDate;
-@Entity
-@Data
-public class WorkReport {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Data
+public class WorkReportDTO {
+
     private Long id;
     private String executor;
     private LocalDate date;
@@ -22,7 +16,7 @@ public class WorkReport {
     private String job;
     private boolean dismantling;
     private String material;
-    private double amount; //СУПЕРВАЖНО! BigDecimal
+    private double amount;
     private double coef;
     private double weekendCoef;
     private String note;

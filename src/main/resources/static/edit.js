@@ -1,30 +1,49 @@
 const id = new URLSearchParams(window.location.search).get('id');
 
+// Загружаем отчёт и подставляем в форму
 async function loadReport() {
   try {
     const res = await fetch(`/api/reports/${id}`);
     if (!res.ok) throw new Error("Запись не найдена");
     const report = await res.json();
 
+    // Заполняем поля
+    document.getElementById('executor').value = report.executor;
     document.getElementById('date').value = report.date;
+    document.getElementById('object').value = report.object;
+    document.getElementById('location').value = report.location;
+    document.getElementById('section').value = report.section;
     document.getElementById('job').value = report.job;
+    document.getElementById('dismantling').checked = report.dismantling;
+    document.getElementById('material').value = report.material;
     document.getElementById('amount').value = report.amount;
     document.getElementById('coef').value = report.coef;
     document.getElementById('weekendCoef').value = report.weekendCoef;
+    document.getElementById('note').value = report.note;
+
   } catch (err) {
     alert("Ошибка загрузки отчёта: " + err.message);
   }
 }
 
+// Отправляем весь отчёт
 document.getElementById('editForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const updatedReport = {
+    id: parseInt(id), // не обязателен, но можно отправить
+    executor: document.getElementById('executor').value,
     date: document.getElementById('date').value,
+    object: document.getElementById('object').value,
+    location: document.getElementById('location').value,
+    section: document.getElementById('section').value,
     job: document.getElementById('job').value,
-    amount: parseFloat(document.getElementById('amount').value),
-    coef: parseFloat(document.getElementById('coef').value),
-    weekendCoef: parseFloat(document.getElementById('weekendCoef').value)
+    dismantling: document.getElementById('dismantling').checked,
+    material: document.getElementById('material').value,
+    amount: parseFloat(document.getElementById('amount').value || 0),
+    coef: parseFloat(document.getElementById('coef').value || 1),
+    weekendCoef: parseFloat(document.getElementById('weekendCoef').value || 1),
+    note: document.getElementById('note').value
   };
 
   try {
