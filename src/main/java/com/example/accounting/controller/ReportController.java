@@ -16,13 +16,12 @@ import java.util.List;
 public class ReportController {
 
     private final ReportService reportService;
-
     private final WorkReportMapper mapper;
 
     @PostMapping
     public void save(@RequestBody WorkReportDTO reportDTO) {
         WorkReport report = mapper.mapToEntity(reportDTO);
-        reportService.save(report);
+        reportService.save(report, reportDTO.getJobId());
     }
 
     @GetMapping("/user/{executor}") //TODO

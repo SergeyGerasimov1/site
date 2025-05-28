@@ -13,8 +13,8 @@
     <label>Дата: <input type="date" id="date" required/></label><br/>
     <label>Объект: <input type="text" id="object" required/></label><br/>
     <label>Локация: <input type="text" id="location"/></label><br/>
-    <label>Раздел: <input type="text" id="section" required/></label><br/>
-    <label>Работа: <input type="text" id="job" required/></label><br/>
+    <label>Раздел: <select id="section" onchange="loadJobs()"></select></label><br/>
+    <label>Работа: <select id="job"></select></label><br/>
     <label>Демонтаж: <input type="checkbox" id="dismantling"></label><br/>
     <label>Материал: <input type="text" id="material" required/></label><br/>
     <label>Объём (м/шт): <input type="number" id="amount" required/></label><br/>

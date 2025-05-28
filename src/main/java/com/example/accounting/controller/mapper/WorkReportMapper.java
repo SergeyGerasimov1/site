@@ -10,11 +10,9 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
 public interface WorkReportMapper {
-
     WorkReportDTO mapToDto(WorkReport workReport);
-
-    WorkReport mapToEntity(WorkReportDTO workReport);
 
     List<WorkReportDTO> mapListToDTO(List<WorkReport> workReportList);
 
+    WorkReport mapToEntity(WorkReportDTO workReport);
 }

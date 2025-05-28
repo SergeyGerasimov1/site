@@ -9,7 +9,7 @@ public interface ReportService {
 
     List<WorkReport> getByExecutorAndDate(String executor, LocalDate from, LocalDate to);
 
-    void save(WorkReport report);
+    void save(WorkReport report, Long jobId);
 
     WorkReport getById(Long id);
 
